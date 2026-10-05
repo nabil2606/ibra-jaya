@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Warna merek diambil dari logo Ibra Jaya */
+  --color-navy-950: #061f33;
+  --color-navy-900: #0a3758;
+  --color-navy-800: #0f4a73;
+  --color-navy-700: #14598a;
+  --color-navy-600: #1c6995;
+  --color-navy-100: #dbe9f4;
+  --color-navy-50: #eef5fa;
+  --color-brand-orange: #e8963a;
+  --color-brand-orange-dark: #d48735;
+  --color-cream: #faf7f2;
+  --color-ink: #1b2a3a;
+  --color-muted: #5b6b7b;
+
+  --radius-card: 16px;
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --shadow-float: 0 20px 50px -12px rgba(10, 55, 88, 0.28);
+  --shadow-soft: 0 6px 24px -8px rgba(10, 55, 88, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: var(--color-navy-900);
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand-orange);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-orange px-5 py-3 font-semibold text-navy-950 shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-orange-dark active:translate-y-0;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-navy-900/20 bg-white px-5 py-3 font-semibold text-navy-900 transition hover:border-navy-900/50 hover:bg-navy-50;
+  }
+  .field {
+    @apply w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-ink outline-none transition placeholder:text-muted/70 focus:border-navy-600 focus:ring-2 focus:ring-navy-600/20;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-semibold text-navy-900;
+  }
+  .section-wave {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 Q150 0 300 12 T600 12 T900 12 T1200 12 V24 H0Z' fill='%23faf7f2'/%3E%3C/svg%3E")
+      bottom / 100% 100% no-repeat;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
