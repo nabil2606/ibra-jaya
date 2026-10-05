@@ -3,7 +3,7 @@ import { AuthForm } from "@/components/auth/AuthForm";
 import { AuthShell } from "@/components/auth/AuthShell";
 import { register } from "@/lib/auth-actions";
 
-export const metadata: Metadata = { title: "Daftar", description: "Buat akun Ibra Jaya untuk memesan sewa mobil dan shuttle." };
+export const metadata: Metadata = { title: "Daftar", description: "Buat akun Ibra Jaya Trans untuk memesan sewa mobil dan shuttle." };
 
 export default function DaftarPage() {
   return (

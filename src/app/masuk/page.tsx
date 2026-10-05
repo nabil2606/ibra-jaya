@@ -3,14 +3,14 @@ import { AuthForm } from "@/components/auth/AuthForm";
 import { AuthShell } from "@/components/auth/AuthShell";
 import { login } from "@/lib/auth-actions";
 
-export const metadata: Metadata = { title: "Masuk", description: "Masuk ke akun Ibra Jaya untuk memesan dan memantau pesanan." };
+export const metadata: Metadata = { title: "Masuk", description: "Masuk ke akun Ibra Jaya Trans untuk memesan dan memantau pesanan." };
 
 export default async function MasukPage({ searchParams }: { searchParams: Promise<{ next?: string; info?: string }> }) {
   const { next, info } = await searchParams;
   return (
     <AuthShell
       title="Masuk"
-      subtitle="Selamat datang kembali di Ibra Jaya."
+      subtitle="Selamat datang kembali di Ibra Jaya Trans."
       notice={info === "verifikasi" ? "Pendaftaran berhasil. Cek email Anda untuk verifikasi, lalu masuk." : undefined}
     >
       <AuthForm

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Logo } from "@/components/ui/Logo";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { NAV_LINKS, SITE } from "@/lib/site";
@@ -8,9 +8,7 @@ export function Footer() {
     <footer className="mt-20 bg-brand-dark text-surface-200">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-3">
         <div>
-          <div className="inline-block rounded-2xl bg-white p-2">
-            <Image src="/assets/logo-crop.webp" alt="Logo Ibra Jaya" width={134} height={90} className="h-14 w-auto" />
-          </div>
+          <Logo variant="main" height={56} />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-surface-200/80">{SITE.tagline}. Perjalanan nyaman, harga jelas.</p>
         </div>
         <div>

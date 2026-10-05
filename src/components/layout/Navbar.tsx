@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Logo } from "@/components/ui/Logo";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LayoutDashboard, LogOut, Menu, User, X, ClipboardList } from "lucide-react";
@@ -37,8 +37,8 @@ export function Navbar({ user }: Props) {
         >
           <Menu size={24} />
         </button>
-        <Link href="/" className="flex items-center" aria-label="Ibra Jaya — beranda">
-          <Image src="/assets/logo-crop.webp" alt="Logo Ibra Jaya" width={134} height={90} priority className="h-11 w-auto" />
+        <Link href="/" className="flex items-center" aria-label="Ibra Jaya Trans — beranda">
+          <Logo variant="dark" height={44} priority />
         </Link>
         <div className="ml-auto flex items-center gap-2">
           {user ? (
@@ -76,7 +76,7 @@ export function Navbar({ user }: Props) {
           className={`absolute left-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-surface shadow-float transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
         >
           <div className="flex items-center justify-between border-b border-brand-dark/10 p-4">
-            <Image src="/assets/logo-crop.webp" alt="Logo Ibra Jaya" width={134} height={90} className="h-10 w-auto" />
+            <Logo variant="dark" height={40} />
             <button type="button" onClick={close} aria-label="Tutup menu" className="grid h-10 w-10 place-items-center rounded-xl hover:bg-brand-dark/5">
               <X size={22} />
             </button>

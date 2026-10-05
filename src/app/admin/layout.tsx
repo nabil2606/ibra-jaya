@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: { default: "Admin — Ibra Jaya", template: "%s | Admin Ibra Jaya" },
+  title: { default: "Admin — Ibra Jaya Trans", template: "%s | Admin Ibra Jaya Trans" },
   robots: "noindex, nofollow",
 };
 

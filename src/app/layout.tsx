@@ -23,11 +23,11 @@ export const metadata: Metadata = {
     description: SITE.description,
     locale: "id_ID",
     type: "website",
-    images: [{ url: "/assets/brand/og-image.png", width: 1200, height: 630, alt: "Logo Ibra Jaya Trans" }],
+    images: [{ url: "/assets/brand/og-image-v2.png", width: 1200, height: 630, alt: "Logo Ibra Jaya Trans" }],
   },
 };
 
-export const viewport: Viewport = { themeColor: "#0a3758" };
+export const viewport: Viewport = { themeColor: "#111111" };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getSessionProfile();
