@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
-            <Image src="/assets/brand/logo-icon-v2.png" alt="Ibra Jaya Trans" width={56} height={56} className="h-14 w-14" />
+            <Image src="/assets/brand/logo-icon-dark-v2.jpg" alt="Ibra Jaya Trans" width={56} height={56} className="h-14 w-14 rounded-lg" />
             <span className="font-heading text-xl font-extrabold text-white">Ibra Jaya <span className="text-brand">Trans</span></span>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-surface-200/80">{SITE.tagline}. Perjalanan nyaman, harga jelas.</p>
