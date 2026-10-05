@@ -106,5 +106,27 @@ export async function createShuttleBooking(
     details: { seats, route_id: schedule.route_id },
   });
 
+  // Simpan data penumpang dengan nomor kursi
+  try {
+    const selectedSeatsRaw = formData.get("selected_seats");
+    const passengersRaw = formData.get("passengers");
+    const selectedSeats: number[] = selectedSeatsRaw ? JSON.parse(String(selectedSeatsRaw)) : [];
+    const passengersData: { name: string; phone: string }[] = passengersRaw ? JSON.parse(String(passengersRaw)) : [];
+
+    if (passengersData.length > 0) {
+      const passengerRows = passengersData.map((p, i) => ({
+        booking_id: booking.id,
+        departure_id: schedule_id,
+        name: p.name || `Penumpang ${i + 1}`,
+        phone: p.phone || null,
+        seat_number: selectedSeats[i] ?? null,
+      }));
+      await adminClient.from("booking_passengers").insert(passengerRows);
+    }
+  } catch {
+    // Non-critical: jangan gagalkan booking hanya karena data penumpang gagal
+    console.error("Gagal menyimpan data penumpang");
+  }
+
   redirect(`/pesanan-saya/${booking.code}`);
 }

@@ -86,6 +86,8 @@ export default async function TravelPage({
                         scheduleId={s.id}
                         maxSeats={Math.min(s.seats_available, 10)}
                         pricePerSeat={selectedRoute.price_per_seat}
+                        totalSeats={s.seat_count}
+                        bookedSeatNumbers={s.booked_seat_numbers}
                       />
                     </div>
                   )}
@@ -126,7 +128,7 @@ export default async function TravelPage({
             </div>
             <div className="rounded-[16px] bg-surface-100 p-4 text-xs text-muted space-y-1">
               <p className="font-bold text-brand-dark-800">Ketentuan Travel</p>
-              <p>• Pembayaran via transfer bank BCA dalam 24 jam</p>
+              <p>• Pembayaran via transfer bank dalam 2 jam</p>
               <p>• Antar ke lokasi tersedia (+biaya sesuai jarak)</p>
               <p>• Harap tiba 10 menit sebelum keberangkatan</p>
               <p>• Hubungi WhatsApp untuk bantuan pemesanan</p>
