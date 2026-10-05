@@ -45,7 +45,11 @@ export default async function AdminPesananPage({
   searchParams: Promise<{ status?: string; service?: string }>;
 }) {
   const params = await searchParams;
-  const bookings = await getBookings(params.status, params.service);
+  const adminClient = createAdminClient();
+  const [bookings, { data: drivers }] = await Promise.all([
+    getBookings(params.status, params.service),
+    adminClient.from("drivers").select("id, name").eq("is_active", true).order("name"),
+  ]);
 
   const statuses = ["semua", "menunggu_pembayaran", "menunggu_verifikasi", "dikonfirmasi", "selesai", "dibatalkan", "ditolak"];
 
@@ -127,7 +131,13 @@ export default async function AdminPesananPage({
                       {docsStatus && <p className="mt-0.5 text-muted">{docsStatus}</p>}
                     </td>
                     <td className="px-4 py-3">
-                      <AdminActions bookingId={b.id as string} currentStatus={b.status as string} />
+                      <AdminActions
+                        bookingId={b.id as string}
+                        currentStatus={b.status as string}
+                        serviceType={b.service_type as string}
+                        drivers={drivers ?? []}
+                        currentDriverId={(item?.driver as { id?: string } | null)?.id ?? null}
+                      />
                     </td>
                   </tr>
                 );

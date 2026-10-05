@@ -2,6 +2,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { formatDateWIB, formatRupiah } from "@/lib/format";
 import { RouteForm } from "@/components/admin/RouteForm";
 import { DepartureForm } from "@/components/admin/DepartureForm";
+import { DeleteRouteButton, DeleteDepartureButton } from "@/components/admin/DeleteButtons";
 
 export const metadata = { title: "Rute & Jadwal" };
 
@@ -43,6 +44,7 @@ export default async function AdminRuteJadwalPage() {
                 <th className="px-4 py-3 text-right text-xs font-bold text-muted">Harga/Kursi</th>
                 <th className="px-4 py-3 text-right text-xs font-bold text-muted">Durasi</th>
                 <th className="px-4 py-3 text-center text-xs font-bold text-muted">Status</th>
+                <th className="px-4 py-3 text-center text-xs font-bold text-muted">Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -56,6 +58,9 @@ export default async function AdminRuteJadwalPage() {
                     <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${r.is_active ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
                       {r.is_active ? "Aktif" : "Nonaktif"}
                     </span>
+                  </td>
+                  <td className="px-4 py-3 text-center">
+                    {r.is_active && <DeleteRouteButton id={r.id} />}
                   </td>
                 </tr>
               ))}
@@ -86,6 +91,7 @@ export default async function AdminRuteJadwalPage() {
                 <th className="px-4 py-3 text-right text-xs font-bold text-muted">Harga</th>
                 <th className="px-4 py-3 text-center text-xs font-bold text-muted">Kursi</th>
                 <th className="px-4 py-3 text-center text-xs font-bold text-muted">Status</th>
+                <th className="px-4 py-3 text-center text-xs font-bold text-muted">Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -110,6 +116,9 @@ export default async function AdminRuteJadwalPage() {
                         d.status === "penuh" ? "bg-amber-100 text-amber-700" :
                         "bg-red-100 text-red-700"
                       }`}>{d.status}</span>
+                    </td>
+                    <td className="px-4 py-3 text-center">
+                      {d.status === "buka" && <DeleteDepartureButton id={d.id} />}
                     </td>
                   </tr>
                 );
