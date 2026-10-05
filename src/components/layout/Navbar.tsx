@@ -1,11 +1,18 @@
 "use client";
 
-import { Logo } from "@/components/ui/Logo";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { LayoutDashboard, LogOut, Menu, User, X, ClipboardList } from "lucide-react";
+import { Car, LayoutDashboard, LogOut, Menu, MapPin, Truck, User, Users, X, ClipboardList } from "lucide-react";
 import { NAV_LINKS } from "@/lib/site";
 import { logout } from "@/lib/auth-actions";
+
+const NAV_ICONS: Record<string, React.ElementType> = {
+  "/sewa-mobil": Car,
+  "/dengan-pengemudi": Users,
+  "/travel": MapPin,
+  "/armada": Truck,
+};
 
 type Props = { user: { name: string; isAdmin: boolean } | null };
 
@@ -37,8 +44,9 @@ export function Navbar({ user }: Props) {
         >
           <Menu size={24} />
         </button>
-        <Link href="/" className="flex items-center" aria-label="Ibra Jaya Trans — beranda">
-          <Logo variant="dark" height={44} priority />
+        <Link href="/" className="flex items-center gap-2" aria-label="Ibra Jaya Trans — beranda">
+          <Image src="/assets/brand/logo-icon-v2.png" alt="Ibra Jaya Trans" width={44} height={44} priority className="h-11 w-11" />
+          <span className="hidden font-heading text-lg font-extrabold text-brand-dark sm:block">Ibra Jaya <span className="text-brand">Trans</span></span>
         </Link>
         <div className="ml-auto flex items-center gap-2">
           {user ? (
@@ -76,19 +84,26 @@ export function Navbar({ user }: Props) {
           className={`absolute left-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-surface shadow-float transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
         >
           <div className="flex items-center justify-between border-b border-brand-dark/10 p-4">
-            <Logo variant="dark" height={40} />
+            <div className="flex items-center gap-2">
+              <Image src="/assets/brand/logo-icon-v2.png" alt="Ibra Jaya Trans" width={40} height={40} className="h-10 w-10" />
+              <span className="font-heading text-base font-extrabold text-brand-dark">Ibra Jaya <span className="text-brand">Trans</span></span>
+            </div>
             <button type="button" onClick={close} aria-label="Tutup menu" className="grid h-10 w-10 place-items-center rounded-xl hover:bg-brand-dark/5">
               <X size={22} />
             </button>
           </div>
           <ul className="flex-1 space-y-1 overflow-y-auto p-3">
-            {NAV_LINKS.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} onClick={close} className="block rounded-xl px-4 py-3 font-semibold text-brand-dark hover:bg-brand-dark/5">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+            {NAV_LINKS.map((l) => {
+              const Icon = NAV_ICONS[l.href];
+              return (
+                <li key={l.href}>
+                  <Link href={l.href} onClick={close} className="flex items-center gap-3 rounded-xl px-4 py-3 font-semibold text-brand-dark hover:bg-brand-dark/5">
+                    {Icon && <Icon size={20} className="text-brand" />}
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="my-2 border-t border-brand-dark/10" />
             {user && (
               <>
