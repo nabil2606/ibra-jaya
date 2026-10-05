@@ -39,7 +39,7 @@ export function ArmadaFilter() {
 
   return (
     <aside aria-label="Filter armada" className="space-y-4">
-      <h2 className="font-heading text-base font-bold text-navy-900">Filter</h2>
+      <h2 className="font-heading text-base font-bold text-brand-dark">Filter</h2>
       <Select label="Kategori" id="f-kategori" k="kategori" options={[{ v: "mobil", l: "Mobil" }, { v: "microbus", l: "Microbus" }]} />
       <Select label="Transmisi" id="f-transmisi" k="transmisi" options={[{ v: "manual", l: "Manual" }, { v: "matic", l: "Matic" }]} />
       <Select label="Min. kapasitas" id="f-kapasitas" k="kapasitas"
@@ -50,7 +50,7 @@ export function ArmadaFilter() {
         <button
           type="button"
           onClick={() => router.push(pathname)}
-          className="w-full rounded-xl border border-navy-900/20 py-2 text-sm font-semibold text-muted hover:border-navy-900/40"
+          className="w-full rounded-xl border border-brand-dark/20 py-2 text-sm font-semibold text-muted hover:border-brand-dark/40"
         >
           Reset filter
         </button>

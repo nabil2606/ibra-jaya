@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { AskAIPanel } from "@/components/chat/AskAIPanel";
 import { getSessionProfile } from "@/lib/auth";
 import { SITE } from "@/lib/site";
 
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     description: SITE.description,
     locale: "id_ID",
     type: "website",
-    images: [{ url: "/assets/og-image.jpg", width: 1200, height: 630, alt: "Logo Ibra Jaya" }],
+    images: [{ url: "/assets/brand/og-image.png", width: 1200, height: 630, alt: "Logo Ibra Jaya Trans" }],
   },
 };
 
@@ -40,6 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Navbar user={user} />
         <main className="flex-1">{children}</main>
         <Footer />
+        <AskAIPanel />
       </body>
     </html>
   );

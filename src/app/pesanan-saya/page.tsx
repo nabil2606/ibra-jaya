@@ -27,7 +27,7 @@ export default async function PesananSayaPage() {
 
       {bookings.length === 0 ? (
         <div className="mt-10 flex flex-col items-center gap-3 rounded-[16px] bg-white p-10 text-center shadow-soft">
-          <ClipboardX size={40} className="text-navy-600/30" />
+          <ClipboardX size={40} className="text-brand-dark-600/30" />
           <p className="text-muted">Belum ada pesanan. Yuk, mulai pesan!</p>
           <Link href="/armada" className="btn-primary mt-2">Lihat Armada</Link>
         </div>
@@ -49,7 +49,7 @@ export default async function PesananSayaPage() {
                     </span>
                   </div>
                   <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted">
-                    <span>Total: <strong className="text-navy-900">{formatRupiah(b.total_price)}</strong></span>
+                    <span>Total: <strong className="text-brand-dark">{formatRupiah(b.total_price)}</strong></span>
                     {item?.start_at && <span>Mulai: {formatDateWIB(item.start_at)}</span>}
                     <span>Dipesan: {formatDateWIB(b.created_at)}</span>
                   </div>

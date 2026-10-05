@@ -52,8 +52,8 @@ export function WithDriverForm({
   const pkg = packages.find((p) => p.id === selectedPkg);
 
   return (
-    <form action={formAction} className="mt-3 space-y-4 rounded-xl border border-navy-900/10 p-4">
-      <h3 className="font-bold text-navy-900">Form Pemesanan — {vehicleName}</h3>
+    <form action={formAction} className="mt-3 space-y-4 rounded-xl border border-brand-dark/10 p-4">
+      <h3 className="font-bold text-brand-dark">Form Pemesanan — {vehicleName}</h3>
       <input type="hidden" name="vehicle_id" value={vehicleId} />
 
       <div>
@@ -100,8 +100,8 @@ export function WithDriverForm({
       </div>
 
       {pkg && (
-        <div className="rounded-xl bg-navy-50 p-3 text-xs text-muted">
-          <p className="font-semibold text-navy-800">Estimasi biaya</p>
+        <div className="rounded-xl bg-surface-100 p-3 text-xs text-muted">
+          <p className="font-semibold text-brand-dark-800">Estimasi biaya</p>
           <p>{formatRupiah(pkg.price)}/hari × durasi (dihitung saat checkout)</p>
           {pkg.fuel_included && <p className="text-green-700">✓ Termasuk BBM</p>}
         </div>
@@ -113,7 +113,7 @@ export function WithDriverForm({
 
       <div className="flex gap-3">
         <button type="button" onClick={() => setOpen(false)}
-          className="flex-1 rounded-xl border border-navy-900/20 py-2.5 text-sm font-semibold text-muted hover:border-navy-900/40">
+          className="flex-1 rounded-xl border border-brand-dark/20 py-2.5 text-sm font-semibold text-muted hover:border-brand-dark/40">
           Batal
         </button>
         <button type="submit" disabled={pending}

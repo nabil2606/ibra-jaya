@@ -35,7 +35,7 @@ export default async function PesananDetailPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <Link href="/pesanan-saya" className="inline-flex items-center gap-1 text-sm font-semibold text-navy-700 hover:text-navy-900">
+      <Link href="/pesanan-saya" className="inline-flex items-center gap-1 text-sm font-semibold text-brand-dark-700 hover:text-brand-dark">
         <ArrowLeft size={16} /> Kembali
       </Link>
 
@@ -53,8 +53,8 @@ export default async function PesananDetailPage({ params }: Props) {
             </span>
           </div>
           {booking.admin_notes && (
-            <div className="mt-3 rounded-xl bg-navy-50 p-3 text-xs text-muted">
-              <span className="font-bold text-navy-800">Catatan admin: </span>{booking.admin_notes}
+            <div className="mt-3 rounded-xl bg-surface-100 p-3 text-xs text-muted">
+              <span className="font-bold text-brand-dark-800">Catatan admin: </span>{booking.admin_notes}
             </div>
           )}
         </div>
@@ -66,8 +66,8 @@ export default async function PesananDetailPage({ params }: Props) {
           {item?.end_at && <p><span className="text-muted">Selesai: </span><strong>{formatDateWIB(item.end_at)}</strong></p>}
           {item?.pickup_location && <p><span className="text-muted">Lokasi: </span><strong>{item.pickup_location}</strong></p>}
           {item && <p><span className="text-muted">Durasi: </span><strong>{item.qty} hari</strong></p>}
-          <hr className="border-navy-900/10" />
-          <p className="text-base font-bold text-navy-900">Total: {formatRupiah(booking.total_price)}</p>
+          <hr className="border-brand-dark/10" />
+          <p className="text-base font-bold text-brand-dark">Total: {formatRupiah(booking.total_price)}</p>
           {needsPayment && (
             <p className="text-xs text-amber-700">Batas bayar: {formatDateWIB(booking.payment_deadline)}</p>
           )}
@@ -88,7 +88,7 @@ export default async function PesananDetailPage({ params }: Props) {
         {needsPayment && (
           <div className="rounded-[16px] bg-white p-5 shadow-soft space-y-3">
             <h2 className="font-heading text-base font-bold">Pembayaran</h2>
-            <div className="rounded-xl bg-navy-50 p-3 text-xs text-navy-800 space-y-1">
+            <div className="rounded-xl bg-surface-100 p-3 text-xs text-brand-dark-800 space-y-1">
               <p className="font-bold">Transfer ke:</p>
               <p>BCA • 7771234567 • a.n. Ibra Jaya</p>
               <p className="text-[10px] text-muted">Cantumkan kode pesanan <strong>{booking.code}</strong> dalam berita transfer.</p>

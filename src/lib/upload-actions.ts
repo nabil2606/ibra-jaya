@@ -70,6 +70,16 @@ export async function uploadRentalDocument(_: UploadState, formData: FormData): 
   if (!ALLOWED_TYPES.includes(file.type)) return { error: "Format file tidak didukung." };
   if (!["ktp", "sim"].includes(docType)) return { error: "Jenis dokumen tidak valid." };
 
+  // Pastikan pesanan milik user ini
+  const { data: booking } = await supabase
+    .from("bookings")
+    .select("id, service_type")
+    .eq("id", bookingId)
+    .eq("user_id", user.id)
+    .single();
+  if (!booking) return { error: "Pesanan tidak ditemukan." };
+  if (booking.service_type !== "lepas_kunci") return { error: "Dokumen hanya diperlukan untuk sewa lepas kunci." };
+
   const adminClient = createAdminClient();
   const ext = file.name.split(".").pop() ?? "jpg";
   const path = await uploadFile(user.id, "rental-documents", bookingId, file, `${docType}.${ext}`);

@@ -36,7 +36,7 @@ export const STATUS_COLOR: Record<string, string> = {
   menunggu_pembayaran: "bg-amber-100 text-amber-800",
   menunggu_verifikasi: "bg-blue-100 text-blue-800",
   dikonfirmasi: "bg-green-100 text-green-800",
-  selesai: "bg-navy-100 text-navy-800",
+  selesai: "bg-surface-200 text-brand-dark-800",
   dibatalkan: "bg-red-100 text-red-700",
   ditolak: "bg-red-100 text-red-700",
 };

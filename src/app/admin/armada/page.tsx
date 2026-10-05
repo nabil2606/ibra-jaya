@@ -23,7 +23,7 @@ export default async function AdminArmadaPage() {
     <div className="mx-auto max-w-5xl px-4 py-10">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/admin" className="text-sm font-semibold text-navy-700 hover:text-navy-900 flex items-center gap-1">
+          <Link href="/admin" className="text-sm font-semibold text-brand-dark-700 hover:text-brand-dark flex items-center gap-1">
             <ArrowLeft size={16} /> Dashboard
           </Link>
           <h1 className="text-xl font-extrabold">Kelola Armada</h1>
@@ -36,7 +36,7 @@ export default async function AdminArmadaPage() {
       <div className="rounded-[16px] bg-white shadow-soft overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-navy-900/10 bg-navy-50">
+            <tr className="border-b border-brand-dark/10 bg-surface-100">
               <th className="px-4 py-3 text-left text-xs font-bold text-muted">Kendaraan</th>
               <th className="px-4 py-3 text-left text-xs font-bold text-muted">Kategori</th>
               <th className="px-4 py-3 text-left text-xs font-bold text-muted">Kapasitas</th>
@@ -47,14 +47,14 @@ export default async function AdminArmadaPage() {
           </thead>
           <tbody>
             {(vehicles ?? []).map((v) => (
-              <tr key={v.id} className="border-b border-navy-900/5 hover:bg-navy-50/50">
+              <tr key={v.id} className="border-b border-brand-dark/5 hover:bg-surface-100/50">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <div className="relative h-10 w-14 shrink-0 overflow-hidden rounded-lg bg-navy-50">
+                    <div className="relative h-10 w-14 shrink-0 overflow-hidden rounded-lg bg-surface-100">
                       {v.images?.[0] ? (
                         <Image src={v.images[0]} alt={v.name} fill sizes="56px" className="object-cover" />
                       ) : (
-                        <div className="grid h-full place-items-center text-navy-300"><CarFront size={18} /></div>
+                        <div className="grid h-full place-items-center text-brand-dark/30"><CarFront size={18} /></div>
                       )}
                     </div>
                     <div>
@@ -72,7 +72,7 @@ export default async function AdminArmadaPage() {
                   </span>
                 </td>
                 <td className="px-4 py-3 text-center">
-                  <Link href={`/admin/armada/${v.id}`} className="text-xs font-bold text-navy-700 underline hover:text-navy-900">
+                  <Link href={`/admin/armada/${v.id}`} className="text-xs font-bold text-brand-dark-700 underline hover:text-brand-dark">
                     Edit
                   </Link>
                 </td>

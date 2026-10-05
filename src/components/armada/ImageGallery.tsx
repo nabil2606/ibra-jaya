@@ -8,8 +8,8 @@ export function ImageGallery({ images, name }: { images: string[]; name: string 
   const [idx, setIdx] = useState(0);
   if (!images || images.length === 0) {
     return (
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[16px] bg-navy-50">
-        <div className="grid h-full place-items-center text-navy-600/30" role="img" aria-label={`Foto ${name} belum tersedia`}>
+      <div className="relative aspect-[16/10] overflow-hidden rounded-[16px] bg-surface-100">
+        <div className="grid h-full place-items-center text-brand-dark-600/30" role="img" aria-label={`Foto ${name} belum tersedia`}>
           <CarFront size={72} strokeWidth={1.2} />
         </div>
       </div>
@@ -17,7 +17,7 @@ export function ImageGallery({ images, name }: { images: string[]; name: string 
   }
   return (
     <div className="space-y-2">
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[16px] bg-navy-50">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-[16px] bg-surface-100">
         <Image src={images[idx]} alt={`Foto ${name} ${idx + 1}`} fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" priority={idx === 0} />
         {images.length > 1 && (
           <>
@@ -40,7 +40,7 @@ export function ImageGallery({ images, name }: { images: string[]; name: string 
       {images.length > 1 && (
         <div className="flex gap-2 overflow-x-auto pb-1">
           {images.map((src, i) => (
-            <button key={src} type="button" onClick={() => setIdx(i)} className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 ${i === idx ? "border-navy-600" : "border-transparent"}`}>
+            <button key={src} type="button" onClick={() => setIdx(i)} className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 ${i === idx ? "border-brand-dark-600" : "border-transparent"}`}>
               <Image src={src} alt={`Thumbnail ${i + 1}`} fill sizes="96px" className="object-cover" />
             </button>
           ))}

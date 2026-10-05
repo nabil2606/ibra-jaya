@@ -1,25 +1,32 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Warna merek diambil dari logo Ibra Jaya */
-  --color-navy-950: #061f33;
-  --color-navy-900: #0a3758;
-  --color-navy-800: #0f4a73;
-  --color-navy-700: #14598a;
-  --color-navy-600: #1c6995;
-  --color-navy-100: #dbe9f4;
-  --color-navy-50: #eef5fa;
-  --color-brand-orange: #e8963a;
-  --color-brand-orange-dark: #d48735;
-  --color-cream: #faf7f2;
-  --color-ink: #1b2a3a;
-  --color-muted: #5b6b7b;
+  /* Palet Ibra Jaya Trans — diambil dari logo (sampel piksel belah ketupat: #EC1F24).
+     Token dinamai berdasarkan fungsi agar mudah diganti. */
+  --color-brand: #ec1f24; /* merah logo: aksen, motif, badge besar */
+  --color-brand-strong: #d61a20; /* CTA & teks merah: kontras 5,2:1 dgn putih (AA) */
+  --color-brand-hover: #b5151a;
+  --color-brand-soft: #fdebeb;
+
+  --color-brand-dark: #111111; /* navbar, footer, section gelap, teks heading */
+  --color-brand-dark-800: #1a1a1a;
+  --color-brand-dark-700: #2b2b2b;
+  --color-brand-dark-600: #404040;
+
+  --color-surface: #faf7f2; /* latar konten krem hangat */
+  --color-surface-100: #f4efe7;
+  --color-surface-200: #e9e3d9;
+  --color-line: #e2dcd2;
+
+  --color-ink: #1a1a1a;
+  --color-muted: #5c5c5c; /* teks sekunder: 6,3:1 di atas krem */
 
   --radius-card: 16px;
   --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --shadow-float: 0 20px 50px -12px rgba(10, 55, 88, 0.28);
-  --shadow-soft: 0 6px 24px -8px rgba(10, 55, 88, 0.18);
+  --font-script: var(--font-script-accent), cursive;
+  --shadow-float: 0 20px 50px -12px rgba(17, 17, 17, 0.3);
+  --shadow-soft: 0 6px 24px -8px rgba(17, 17, 17, 0.16);
 }
 
 html {
@@ -27,7 +34,7 @@ html {
 }
 
 body {
-  background: var(--color-cream);
+  background: var(--color-surface);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -38,31 +45,53 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
-  color: var(--color-navy-900);
+  color: var(--color-brand-dark);
   letter-spacing: -0.01em;
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-brand-orange);
+  outline: 3px solid var(--color-brand);
   outline-offset: 2px;
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-orange px-5 py-3 font-semibold text-navy-950 shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-orange-dark active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-strong px-5 py-3 font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-hover active:translate-y-0;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-navy-900/20 bg-white px-5 py-3 font-semibold text-navy-900 transition hover:border-navy-900/50 hover:bg-navy-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-brand-dark/20 bg-white px-5 py-3 font-semibold text-brand-dark transition hover:border-brand-dark/50 hover:bg-surface-100;
   }
-  .field {
-    @apply w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-ink outline-none transition placeholder:text-muted/70 focus:border-navy-600 focus:ring-2 focus:ring-navy-600/20;
+  .field,
+  .input-field {
+    @apply w-full rounded-xl border border-brand-dark/15 bg-white px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-brand-strong focus:ring-2 focus:ring-brand/20;
   }
   .label {
-    @apply mb-1.5 block text-sm font-semibold text-navy-900;
+    @apply mb-1.5 block text-sm font-semibold text-brand-dark;
   }
-  .section-wave {
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 Q150 0 300 12 T600 12 T900 12 T1200 12 V24 H0Z' fill='%23faf7f2'/%3E%3C/svg%3E")
-      bottom / 100% 100% no-repeat;
+  /* Motif belah ketupat dari logo — dipakai hemat */
+  .diamond {
+    @apply inline-block h-2 w-2 shrink-0 rotate-45 bg-brand;
+  }
+  .diamond-divider {
+    @apply flex items-center gap-3 text-brand;
+  }
+  .diamond-divider::before,
+  .diamond-divider::after {
+    content: "";
+    @apply h-px flex-1 bg-current opacity-30;
+  }
+  /* Garis tipis bergaya siluet mobil sebagai pemisah section */
+  .car-line {
+    height: 14px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 14' preserveAspectRatio='none'%3E%3Cpath d='M0 12 C180 12 260 4 420 3 S760 2 880 6 C960 9 1040 4 1120 2 L1200 1' fill='none' stroke='%23111111' stroke-opacity='.18' stroke-width='1.5'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+  }
+  .corner-diamond {
+    position: relative;
+  }
+  .corner-diamond::after {
+    content: "";
+    @apply pointer-events-none absolute -right-1.5 -top-1.5 h-3 w-3 rotate-45 bg-brand;
   }
 }
 

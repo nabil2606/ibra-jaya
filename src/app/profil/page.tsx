@@ -22,14 +22,14 @@ export default async function ProfilPage() {
 
       {/* Avatar & info singkat */}
       <div className="flex items-center gap-5 rounded-[16px] bg-white p-5 shadow-soft">
-        <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-navy-600 text-2xl font-extrabold text-white">
+        <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-brand-dark-600 text-2xl font-extrabold text-white">
           {profile.full_name?.charAt(0).toUpperCase() ?? "?"}
         </div>
         <div>
           <p className="text-lg font-bold">{profile.full_name}</p>
           <p className="text-sm text-muted">{session.email}</p>
           {profile.role === "admin" && (
-            <span className="mt-1 inline-block rounded-full bg-navy-900 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">Admin</span>
+            <span className="mt-1 inline-block rounded-full bg-brand-dark px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">Admin</span>
           )}
         </div>
       </div>
@@ -44,7 +44,7 @@ export default async function ProfilPage() {
       <div className="rounded-[16px] bg-white p-5 shadow-soft">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-heading text-base font-bold">Pesanan Terbaru</h2>
-          <Link href="/pesanan-saya" className="text-xs font-semibold text-navy-700 underline">Lihat semua</Link>
+          <Link href="/pesanan-saya" className="text-xs font-semibold text-brand-dark-700 underline">Lihat semua</Link>
         </div>
         {recentBookings.length === 0 ? (
           <p className="text-sm text-muted">Belum ada pesanan.</p>
@@ -52,7 +52,7 @@ export default async function ProfilPage() {
           <ul className="space-y-3">
             {recentBookings.map((b) => (
               <li key={b.id}>
-                <Link href={`/pesanan-saya/${b.code}`} className="flex items-center justify-between rounded-xl border border-navy-900/10 p-3 hover:border-navy-900/25 transition">
+                <Link href={`/pesanan-saya/${b.code}`} className="flex items-center justify-between rounded-xl border border-brand-dark/10 p-3 hover:border-brand-dark/25 transition">
                   <div>
                     <p className="text-xs font-bold text-muted">#{b.code}</p>
                     <p className="text-sm font-semibold">{b.booking_items[0]?.vehicle?.name ?? b.service_type}</p>
@@ -73,10 +73,10 @@ export default async function ProfilPage() {
 
       {/* Link admin jika admin */}
       {profile.role === "admin" && (
-        <div className="rounded-[16px] bg-navy-900 p-5 text-white">
+        <div className="rounded-[16px] bg-brand-dark p-5 text-white">
           <p className="font-bold">Dashboard Admin</p>
           <p className="text-sm text-white/70 mt-1">Kelola pesanan, armada, dan pengguna.</p>
-          <Link href="/admin" className="mt-3 inline-block rounded-xl bg-white px-4 py-2 text-sm font-bold text-navy-900 hover:bg-navy-50">
+          <Link href="/admin" className="mt-3 inline-block rounded-xl bg-white px-4 py-2 text-sm font-bold text-brand-dark hover:bg-surface-100">
             Buka Dashboard
           </Link>
         </div>

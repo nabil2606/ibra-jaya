@@ -10,7 +10,7 @@ const ACTIONS: Record<string, { label: string; status: string; color: string; ic
     { label: "Tolak", status: "ditolak", color: "bg-red-600 hover:bg-red-700", icon: X },
   ],
   dikonfirmasi: [
-    { label: "Selesai", status: "selesai", color: "bg-navy-600 hover:bg-navy-700", icon: Truck },
+    { label: "Selesai", status: "selesai", color: "bg-brand-dark-600 hover:bg-brand-dark-700", icon: Truck },
   ],
   menunggu_pembayaran: [
     { label: "Batalkan", status: "dibatalkan", color: "bg-gray-500 hover:bg-gray-600", icon: X },

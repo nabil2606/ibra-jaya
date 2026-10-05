@@ -37,7 +37,7 @@ export function AuthForm({
         {pending ? "Memproses…" : submitLabel}
       </button>
       <p className="text-center text-sm text-muted">
-        {footer.text} <Link href={footer.href} className="font-bold text-navy-700 underline">{footer.label}</Link>
+        {footer.text} <Link href={footer.href} className="font-bold text-brand-dark-700 underline">{footer.label}</Link>
       </p>
     </form>
   );

@@ -12,8 +12,8 @@ function UploadField({ action, bookingId, label, name, extra }: {
 }) {
   const [state, formAction, pending] = useActionState(action, undefined);
   return (
-    <form action={formAction} className="space-y-2 rounded-xl border border-navy-900/10 p-4">
-      <p className="text-sm font-semibold text-navy-800">{label}</p>
+    <form action={formAction} className="space-y-2 rounded-xl border border-brand-dark/10 p-4">
+      <p className="text-sm font-semibold text-brand-dark-800">{label}</p>
       <input type="hidden" name="booking_id" value={bookingId} />
       {extra}
       <input id={`file-${name}`} name="file" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required className="field text-sm" />

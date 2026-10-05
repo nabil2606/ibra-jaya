@@ -26,7 +26,7 @@ export function SearchCard() {
 
   return (
     <div className="rounded-[24px] bg-white p-3 shadow-float sm:p-4">
-      <div role="tablist" aria-label="Jenis layanan" className="grid grid-cols-3 gap-1 rounded-2xl bg-navy-50 p-1">
+      <div role="tablist" aria-label="Jenis layanan" className="grid grid-cols-3 gap-1 rounded-2xl bg-surface-100 p-1">
         {TABS.map(({ key, label, icon: Icon }) => (
           <button
             key={key}
@@ -37,7 +37,7 @@ export function SearchCard() {
             aria-controls="search-panel"
             onClick={() => setTab(key)}
             className={`flex flex-col items-center gap-1 rounded-xl px-1 py-2.5 text-[11px] font-bold leading-tight transition sm:flex-row sm:justify-center sm:gap-2 sm:text-sm ${
-              tab === key ? "bg-navy-900 text-white shadow-soft" : "text-navy-900/70 hover:bg-white"
+              tab === key ? "bg-brand-dark text-white shadow-soft [&>svg]:text-brand" : "text-brand-dark/70 hover:bg-white"
             }`}
           >
             <Icon size={18} aria-hidden /> <span className="text-center">{label}</span>

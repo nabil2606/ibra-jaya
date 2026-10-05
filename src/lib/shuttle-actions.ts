@@ -45,17 +45,33 @@ export async function createShuttleBooking(
     .single();
 
   if (!schedule) return { error: "Jadwal tidak ditemukan." };
-  if (new Date(schedule.depart_at) <= new Date()) return { error: "Jadwal ini sudah berlalu." };
 
-  const seatCount = schedule.seat_count ?? (schedule.vehicle as { capacity?: number } | null)?.capacity ?? 0;
-  const available = seatCount - Number(schedule.seats_booked);
-  if (seats > available) return { error: `Hanya tersisa ${available} kursi untuk jadwal ini.` };
+  // Cek batas waktu pemesanan (2 jam sebelum keberangkatan)
+  const departAt = new Date(schedule.depart_at);
+  const cutoff = new Date(departAt.getTime() - 2 * 3600 * 1000);
+  if (new Date() >= cutoff) return { error: "Pemesanan ditutup 2 jam sebelum keberangkatan." };
 
   // Gunakan price_per_seat dari shuttle_routes jika ada, fallback ke departure
   const routeData = schedule.route as { price_per_seat?: number } | null;
   const pricePerSeat = Number(routeData?.price_per_seat ?? schedule.price_per_seat ?? 0);
   const totalPrice = pricePerSeat * seats;
-  const deadline = new Date(Date.now() + 24 * 3600 * 1000).toISOString();
+
+  // Deadline pembayaran shuttle: 2 jam (lebih pendek dari rental)
+  const msToDepart = departAt.getTime() - Date.now();
+  const shuttleDeadlineMs = Math.min(2 * 3600 * 1000, msToDepart - 30 * 60 * 1000); // min 30 mnt sebelum berangkat
+  if (shuttleDeadlineMs < 15 * 60 * 1000) return { error: "Tidak cukup waktu untuk menyelesaikan pembayaran." };
+  const deadline = new Date(Date.now() + shuttleDeadlineMs).toISOString();
+
+  // Penahanan kursi ATOMIK via fungsi database (mencegah race condition)
+  const { data: reserveResult, error: reserveErr } = await adminClient
+    .rpc("reserve_shuttle_seats", {
+      p_departure_id: schedule_id,
+      p_num_seats: seats,
+    });
+
+  if (reserveErr) return { error: "Gagal menahan kursi: " + reserveErr.message };
+  const result = Array.isArray(reserveResult) ? reserveResult[0] : reserveResult;
+  if (!result?.success) return { error: result?.error_message ?? "Gagal menahan kursi." };
 
   const { data: booking, error: bErr } = await adminClient
     .from("bookings")
@@ -69,24 +85,26 @@ export async function createShuttleBooking(
     })
     .select("id, code")
     .single();
-  if (bErr || !booking) return { error: "Gagal membuat pesanan." };
+
+  if (bErr || !booking) {
+    // Rollback penahanan kursi
+    await adminClient.rpc("release_shuttle_seats", {
+      p_departure_id: schedule_id,
+      p_num_seats: seats,
+    });
+    return { error: "Gagal membuat pesanan." };
+  }
 
   await adminClient.from("booking_items").insert({
     booking_id: booking.id,
-    departure_id: schedule_id,       // kolom asli
-    shuttle_schedule_id: schedule_id, // kolom baru (Sprint 3)
+    departure_id: schedule_id,
+    shuttle_schedule_id: schedule_id,
     start_at: schedule.depart_at,
     pickup_location: pickup_point || null,
     qty: seats,
     unit_price: pricePerSeat,
     details: { seats, route_id: schedule.route_id },
   });
-
-  // Tambah seats_booked secara atomik
-  await adminClient
-    .from("shuttle_departures")
-    .update({ seats_booked: Number(schedule.seats_booked) + seats })
-    .eq("id", schedule_id);
 
   redirect(`/pesanan-saya/${booking.code}`);
 }

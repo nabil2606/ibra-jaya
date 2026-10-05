@@ -34,7 +34,7 @@ export function SelfDriveBookingForm({ vehicle: v, userId }: { vehicle: Vehicle;
 
   return (
     <form action={formAction} className="rounded-[16px] bg-white p-5 shadow-soft space-y-4">
-      <h2 className="font-heading text-lg font-bold text-navy-900">Pesan Lepas Kunci</h2>
+      <h2 className="font-heading text-lg font-bold text-brand-dark">Pesan Lepas Kunci</h2>
 
       <input type="hidden" name="vehicle_id" value={v.id} />
 
@@ -62,8 +62,8 @@ export function SelfDriveBookingForm({ vehicle: v, userId }: { vehicle: Vehicle;
       </div>
 
       {/* Estimasi harga */}
-      <div className="rounded-xl bg-navy-50 p-3 text-sm space-y-1">
-        <p className="font-semibold text-navy-800">Estimasi biaya</p>
+      <div className="rounded-xl bg-surface-100 p-3 text-sm space-y-1">
+        <p className="font-semibold text-brand-dark-800">Estimasi biaya</p>
         <p className="text-xs text-muted">Sewa: {formatRupiah(v.price_per_day_self_drive)}/hari × durasi</p>
         <p className="text-xs text-muted">Deposit: {formatRupiah(v.deposit)} (dikembalikan)</p>
         <p className="text-[10px] text-muted/80">Harga final dihitung ulang di server saat pemesanan.</p>
