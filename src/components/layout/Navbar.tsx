@@ -32,40 +32,43 @@ export function Navbar({ user }: Props) {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-dark/10 bg-surface/90 backdrop-blur">
-      <nav aria-label="Navigasi utama" className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4">
-        <button
-          id="btn-menu"
-          type="button"
-          onClick={() => setOpen(true)}
-          aria-label="Buka menu"
-          aria-expanded={open}
-          className="grid h-11 w-11 place-items-center rounded-xl text-brand-dark transition hover:bg-brand-dark/5"
-        >
-          <Menu size={24} />
-        </button>
-        <Link href="/" className="flex items-center gap-2" aria-label="Ibra Jaya Trans — beranda">
-          <Image src="/assets/brand/logo-icon-v2.png" alt="Ibra Jaya Trans" width={44} height={44} priority className="h-11 w-11" />
-          <span className="hidden font-heading text-lg font-extrabold text-brand-dark sm:block">Ibra Jaya <span className="text-brand">Trans</span></span>
-        </Link>
-        <div className="ml-auto flex items-center gap-2">
-          {user ? (
-            <Link href="/profil" className="hidden items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-brand-dark hover:bg-brand-dark/5 sm:flex">
-              <User size={18} /> {user.name}
-            </Link>
-          ) : (
-            <>
-              <Link id="nav-masuk" href="/masuk" className="rounded-xl px-3 py-2 text-sm font-semibold text-brand-dark hover:bg-brand-dark/5">
-                Masuk
+    <>
+      <header className="sticky top-0 z-40 border-b border-brand-dark/10 bg-surface/90 backdrop-blur">
+        <nav aria-label="Navigasi utama" className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4">
+          <button
+            id="btn-menu"
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Buka menu"
+            aria-expanded={open}
+            className="grid h-11 w-11 place-items-center rounded-xl text-brand-dark transition hover:bg-brand-dark/5"
+          >
+            <Menu size={24} />
+          </button>
+          <Link href="/" className="flex items-center gap-2" aria-label="Ibra Jaya Trans — beranda">
+            <Image src="/assets/brand/logo-icon-v2.png" alt="Ibra Jaya Trans" width={44} height={44} priority className="h-11 w-11" />
+            <span className="hidden font-heading text-lg font-extrabold text-brand-dark sm:block">Ibra Jaya <span className="text-brand">Trans</span></span>
+          </Link>
+          <div className="ml-auto flex items-center gap-2">
+            {user ? (
+              <Link href="/profil" className="hidden items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-brand-dark hover:bg-brand-dark/5 sm:flex">
+                <User size={18} /> {user.name}
               </Link>
-              <Link id="nav-daftar" href="/daftar" className="btn-primary !px-4 !py-2 text-sm">
-                Daftar
-              </Link>
-            </>
-          )}
-        </div>
-      </nav>
+            ) : (
+              <>
+                <Link id="nav-masuk" href="/masuk" className="rounded-xl px-3 py-2 text-sm font-semibold text-brand-dark hover:bg-brand-dark/5">
+                  Masuk
+                </Link>
+                <Link id="nav-daftar" href="/daftar" className="btn-primary !px-4 !py-2 text-sm">
+                  Daftar
+                </Link>
+              </>
+            )}
+          </div>
+        </nav>
+      </header>
 
+      {/* Drawer — HARUS di luar <header> agar tidak terkurung oleh backdrop-blur containing block */}
       <div
         className={`fixed inset-0 z-50 transition ${open ? "visible" : "invisible pointer-events-none"}`}
         aria-hidden={!open}
@@ -143,6 +146,6 @@ export function Navbar({ user }: Props) {
           </div>
         </aside>
       </div>
-    </header>
+    </>
   );
 }
