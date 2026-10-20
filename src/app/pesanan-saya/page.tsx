@@ -9,8 +9,7 @@ import { formatDateWIB, formatRupiah } from "@/lib/format";
 export const metadata: Metadata = { title: "Pesanan Saya" };
 
 const SERVICE_LABEL: Record<string, string> = {
-  lepas_kunci: "Sewa Lepas Kunci",
-  dengan_pengemudi: "Dengan Pengemudi",
+  dengan_pengemudi: "Rental Dengan Pengemudi",
   shuttle: "Travel / Shuttle",
 };
 

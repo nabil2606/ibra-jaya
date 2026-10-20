@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Bus, CarFront, Search, UserRound } from "lucide-react";
+import { Bus, Search, UserRound } from "lucide-react";
 
 const TABS = [
-  { key: "sewa", label: "Sewa Mobil", icon: CarFront, action: "/sewa-mobil" },
   { key: "pengemudi", label: "Dengan Pengemudi", icon: UserRound, action: "/dengan-pengemudi" },
   { key: "shuttle", label: "Travel/Shuttle", icon: Bus, action: "/travel" },
 ] as const;
@@ -21,12 +20,12 @@ function Field({ label, name, ...props }: { label: string; name: string } & Reac
 }
 
 export function SearchCard() {
-  const [tab, setTab] = useState<TabKey>("sewa");
+  const [tab, setTab] = useState<TabKey>("pengemudi");
   const active = TABS.find((t) => t.key === tab)!;
 
   return (
     <div className="rounded-[24px] bg-white p-3 shadow-float sm:p-4">
-      <div role="tablist" aria-label="Jenis layanan" className="grid grid-cols-3 gap-1 rounded-2xl bg-surface-100 p-1">
+      <div role="tablist" aria-label="Jenis layanan" className="grid grid-cols-2 gap-1 rounded-2xl bg-surface-100 p-1">
         {TABS.map(({ key, label, icon: Icon }) => (
           <button
             key={key}
@@ -46,35 +45,39 @@ export function SearchCard() {
       </div>
 
       <form id="search-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} action={active.action} method="get" className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {tab === "sewa" && (
-          <>
-            <Field label="Lokasi pengambilan" name="lokasi" placeholder="Kota atau alamat" required />
-            <Field label="Mulai" name="mulai" type="datetime-local" required />
-            <Field label="Selesai" name="selesai" type="datetime-local" required />
-          </>
-        )}
         {tab === "pengemudi" && (
           <>
             <div>
-              <label htmlFor="sc-paket" className="label">Jenis paket</label>
-              <select id="sc-paket" name="paket" className="field">
-                <option value="harian">Harian (12 jam)</option>
-                <option value="setengah_hari">Setengah hari (6 jam)</option>
-                <option value="antar_jemput">Antar-jemput</option>
-                <option value="luar_kota">Luar kota / multi-hari</option>
+              <label htmlFor="sc-kendaraan" className="label">Kendaraan</label>
+              <select id="sc-kendaraan" name="kendaraan" className="field">
+                <option value="elf-long">Isuzu Elf Long (19 kursi)</option>
+                <option value="hiace">Toyota Hiace (15 kursi)</option>
               </select>
             </div>
-            <Field label="Lokasi jemput" name="jemput" placeholder="Hotel, bandara, alamat" required />
-            <Field label="Tujuan" name="tujuan" placeholder="Kota atau tempat" required />
-            <Field label="Mulai" name="mulai" type="datetime-local" required />
-            <Field label="Durasi (hari)" name="durasi" type="number" min={1} max={30} defaultValue={1} />
-            <Field label="Penumpang" name="penumpang" type="number" min={1} max={30} defaultValue={2} />
+            <div>
+              <label htmlFor="sc-rute" className="label">Tujuan</label>
+              <select id="sc-rute" name="rute" className="field">
+                <option value="sby-malang">Surabaya → Malang Kota / Batu</option>
+                <option value="sby-pantai-selatan">Surabaya → Malang Pantai Selatan</option>
+                <option value="sby-solo">Surabaya → Solo</option>
+                <option value="sby-jogja">Surabaya → Jogja</option>
+              </select>
+            </div>
+            <Field label="Tanggal Keberangkatan" name="tanggal" type="date" required />
+            <Field label="Jumlah Penumpang" name="penumpang" type="number" min={1} max={19} defaultValue={10} />
           </>
         )}
         {tab === "shuttle" && (
           <>
-            <Field label="Asal" name="asal" placeholder="Jakarta" required />
-            <Field label="Tujuan" name="tujuan" placeholder="Bandung" required />
+            <div>
+              <label htmlFor="sc-rute-shuttle" className="label">Rute</label>
+              <select id="sc-rute-shuttle" name="rute" className="field">
+                <option value="surabaya-malang">Surabaya → Malang Kota / Batu</option>
+                <option value="surabaya-pantai-selatan">Surabaya → Malang Pantai Selatan</option>
+                <option value="surabaya-jogja">Surabaya → Jogja</option>
+                <option value="mojokerto-solo">Mojokerto → Solo</option>
+              </select>
+            </div>
             <Field label="Tanggal" name="tanggal" type="date" required />
             <Field label="Penumpang" name="penumpang" type="number" min={1} max={14} defaultValue={1} />
           </>

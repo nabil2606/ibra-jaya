@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-// Arahkan /sewa-mobil ke /armada dengan filter default lepas kunci
+// Sewa lepas kunci tidak tersedia. Arahkan ke rental dengan pengemudi.
 export default function SewaMobilPage() {
-  redirect("/armada?kategori=mobil");
+  redirect("/dengan-pengemudi");
 }

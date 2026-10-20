@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ExternalLink, MapPin, MessageCircle, Phone } from "lucide-react";
 import { NAV_LINKS, SITE } from "@/lib/site";
 
 export function Footer() {
@@ -26,10 +26,24 @@ export function Footer() {
         </div>
         <div>
           <h2 className="!text-white text-base font-bold">Kontak</h2>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li className="flex items-center gap-2"><Phone size={16} /> {SITE.phone}</li>
-            <li className="flex items-center gap-2"><Mail size={16} /> {SITE.email}</li>
-            <li className="flex items-center gap-2"><MapPin size={16} /> {SITE.address}</li>
+          <ul className="mt-3 space-y-3 text-sm">
+            <li>
+              <a href={`tel:${SITE.phone}`} className="flex items-center gap-2 hover:text-brand-strong">
+                <Phone size={16} /> {SITE.phone}
+              </a>
+            </li>
+            <li>
+              <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-green-400">
+                <MessageCircle size={16} /> WhatsApp Admin
+              </a>
+            </li>
+            <li>
+              <a href={SITE.mapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-brand-strong">
+                <MapPin size={16} />
+                <span>{SITE.address}</span>
+                <ExternalLink size={12} className="opacity-60" />
+              </a>
+            </li>
           </ul>
         </div>
       </div>

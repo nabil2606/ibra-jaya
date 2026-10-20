@@ -6,8 +6,8 @@ import { formatRupiah, formatDateWIB } from "@/lib/format";
 import { ShuttleBookingForm } from "@/components/travel/ShuttleBookingForm";
 
 export const metadata: Metadata = {
-  title: "Travel & Shuttle",
-  description: "Pesan tiket travel dan shuttle Jakarta–Bandung dan rute lainnya dari Ibra Jaya. Harga per kursi, berangkat setiap hari.",
+  title: "Travel & Shuttle — Ibra Jaya Trans",
+  description: "Pesan tiket travel dan shuttle dari Surabaya ke Malang, Jogja, dan kota-kota sekitarnya. Harga per kursi, jadwal tetap, armada terawat.",
 };
 
 export default async function TravelPage({

@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, CarFront, Clock, Quote, ShieldCheck, Users, Wallet } from "lucide-react";
+import { ArrowRight, BadgeCheck, Bus, Clock, MessageCircle, Quote, ShieldCheck, Users, Wallet } from "lucide-react";
 import { SearchCard } from "@/components/home/SearchCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { FAQS, FEATURED_FLEET, POPULAR_ROUTES, SERVICES, TESTIMONIALS } from "@/lib/site";
+import { FAQS, FEATURED_FLEET, POPULAR_ROUTES, SERVICES, SITE, TESTIMONIALS } from "@/lib/site";
 import { formatRupiah } from "@/lib/format";
 
 const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
-  sewa: { src: "/assets/hiace.webp", alt: "Toyota Hiace putih Ibra Jaya siap disewa" },
   pengemudi: { src: "/assets/armada-garasi.webp", alt: "Deretan microbus Ibra Jaya di garasi" },
   shuttle: { src: "/assets/interior-microbus.webp", alt: "Interior microbus dengan jok berlogo Ibra Jaya" },
 };
@@ -34,14 +33,20 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-dark/85 via-brand-dark/80 to-brand-dark/95" />
         <div className="mx-auto max-w-6xl px-4">
           <p className="animate-fade-up inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-brand-strong" /> Rental · Dengan Pengemudi · Shuttle
+            <span className="h-2 w-2 rounded-full bg-brand-strong" /> Rental Dengan Pengemudi · Travel/Shuttle
           </p>
           <h1 className="animate-fade-up mt-4 max-w-2xl text-4xl font-extrabold leading-tight !text-white sm:text-5xl">
-            Perjalanan nyaman dimulai dari <span className="text-brand">Ibra Jaya Trans</span>
+            Perjalanan nyaman dari <span className="text-brand">Surabaya</span> bersama Ibra Jaya Trans
           </h1>
           <p className="animate-fade-up mt-4 max-w-xl text-base text-surface-200 sm:text-lg">
-            Sewa mobil, rental dengan pengemudi, atau travel antar kota. Cari, bandingkan, dan pesan online dalam hitungan menit.
+            Rental Elf Long & Hiace dengan pengemudi, atau travel per kursi ke Malang, Jogja, dan kota-kota sekitarnya.
           </p>
+          <div className="animate-fade-up mt-6 flex flex-wrap gap-3">
+            <Link href="/dengan-pengemudi" className="btn-primary !px-5 !py-3">Lihat Paket Rental</Link>
+            <Link href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-5 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20">
+              <MessageCircle size={18} /> WhatsApp Admin
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -51,7 +56,7 @@ export default function HomePage() {
 
       <section className="mx-auto mt-16 max-w-6xl px-4" aria-labelledby="layanan">
         <SectionHeading id="layanan" eyebrow="Layanan" title="Pilih cara bepergian Anda" />
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
           {SERVICES.map((s) => {
             const img = SERVICE_IMAGES[s.key];
             return (
@@ -74,10 +79,10 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto mt-20 max-w-6xl px-4" aria-labelledby="rute">
-        <SectionHeading id="rute" eyebrow="Travel / Shuttle" title="Rute populer & jadwal terdekat" />
+        <SectionHeading id="rute" eyebrow="Travel / Shuttle" title="Rute populer keberangkatan" />
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {POPULAR_ROUTES.map((r) => (
-            <Link key={r.slug} href={`/travel?rute=${r.slug}`} className="relative flex overflow-hidden rounded-card bg-white shadow-soft transition hover:-translate-y-0.5 hover:shadow-float">
+            <Link key={r.slug} href={`/travel`} className="relative flex overflow-hidden rounded-card bg-white shadow-soft transition hover:-translate-y-0.5 hover:shadow-float">
               <div className="flex-1 p-5">
                 <p className="text-xs font-semibold text-muted">{r.duration}</p>
                 <p className="mt-1 font-heading text-lg font-bold text-brand-dark">
@@ -92,9 +97,8 @@ export default function HomePage() {
               <div className="relative flex w-32 flex-col items-center justify-center border-l-2 border-dashed border-brand-dark/15 bg-brand-dark p-3 text-center text-white">
                 <span className="absolute -left-2 -top-2 h-4 w-4 rounded-full bg-surface" />
                 <span className="absolute -bottom-2 -left-2 h-4 w-4 rounded-full bg-surface" />
-                <span className="text-[11px] text-surface-200">mulai dari</span>
-                <span className="font-heading text-base font-extrabold">{formatRupiah(r.price)}</span>
-                <span className="text-[11px] text-surface-200">/ kursi</span>
+                <MessageCircle size={18} className="text-brand" />
+                <span className="mt-1 text-[11px] font-bold text-surface-200">Tanya Harga</span>
               </div>
             </Link>
           ))}
@@ -116,7 +120,7 @@ export default function HomePage() {
                   <Image src={v.image} alt={`Foto ${v.name}`} fill sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
                 ) : (
                   <div className="grid h-full place-items-center text-brand-dark-600/40" role="img" aria-label={`Foto ${v.name} belum tersedia`}>
-                    <CarFront size={56} strokeWidth={1.5} />
+                    <Bus size={56} strokeWidth={1.5} />
                   </div>
                 )}
                 <span className="absolute right-3 top-3 rounded-full bg-brand-strong px-3 py-1 text-xs font-extrabold text-white shadow-soft">

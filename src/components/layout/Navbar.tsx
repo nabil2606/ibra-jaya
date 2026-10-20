@@ -3,12 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Car, LayoutDashboard, LogOut, Menu, MapPin, Truck, User, Users, X, ClipboardList } from "lucide-react";
+import { LayoutDashboard, LogOut, Menu, MapPin, Truck, User, Users, X, ClipboardList } from "lucide-react";
 import { NAV_LINKS } from "@/lib/site";
 import { logout } from "@/lib/auth-actions";
 
 const NAV_ICONS: Record<string, React.ElementType> = {
-  "/sewa-mobil": Car,
   "/dengan-pengemudi": Users,
   "/travel": MapPin,
   "/armada": Truck,

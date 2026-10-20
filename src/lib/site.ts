@@ -1,68 +1,120 @@
 export const SITE = {
-  name: "Ibra Jaya",
-  tagline: "Rental Mobil, Dengan Pengemudi & Travel/Shuttle",
+  name: "Ibra Jaya Trans",
+  tagline: "Rental Mobil Dengan Pengemudi & Travel/Shuttle",
   description:
-    "Ibra Jaya melayani sewa mobil lepas kunci, rental mobil dengan pengemudi, dan travel/shuttle antar kota. Pesan online, harga jelas, armada terawat.",
-  whatsapp: "6281200000000",
-  phone: "0812-0000-0000",
+    "Ibra Jaya Trans melayani rental mobil dengan pengemudi dan travel/shuttle antar kota. Rute Surabaya–Malang, Surabaya–Jogja, dan lebih banyak lagi. Pesan via WhatsApp, harga jelas, armada terawat.",
+  whatsapp: "6289782633​11",
+  whatsappRaw: "6289782633​11",
+  phone: "0897-8263-311",
   email: "halo@ibrajaya.id",
-  address: "Jakarta, Indonesia",
+  address: "Surabaya, Jawa Timur",
+  mapsUrl: "https://share.google/POaZJZCGLKyNMO2Z7",
 };
 
 export const SERVICES = [
   {
-    key: "sewa",
-    href: "/sewa-mobil",
-    title: "Sewa Mobil",
-    subtitle: "Lepas kunci",
-    desc: "Bawa sendiri mobil pilihan Anda dengan harga harian transparan dan proses dokumen online.",
-  },
-  {
     key: "pengemudi",
     href: "/dengan-pengemudi",
-    title: "Dengan Pengemudi",
-    subtitle: "Harian, antar-jemput, luar kota",
-    desc: "Duduk tenang, pengemudi berpengalaman kami yang mengantar ke tujuan Anda.",
+    title: "Rental Dengan Pengemudi",
+    subtitle: "Luar kota, rombongan",
+    desc: "Sewa Elf Long (19 kursi) atau Hiace (15 kursi) lengkap dengan pengemudi berpengalaman. Cocok untuk wisata, perjalanan keluarga, atau rombongan.",
   },
   {
     key: "shuttle",
     href: "/travel",
     title: "Travel / Shuttle",
     subtitle: "Per kursi, jadwal tetap",
-    desc: "Berangkat tepat waktu di rute favorit. Bayar per kursi, pilih tempat duduk sendiri.",
+    desc: "Berangkat tepat waktu di rute favorit Surabaya–Malang, Surabaya–Jogja, dan kota-kota antara. Bayar per kursi, nyaman dan terjangkau.",
+  },
+] as const;
+
+// Data kendaraan rental dengan pengemudi
+export const RENTAL_VEHICLES = [
+  {
+    id: "elf-long",
+    name: "Isuzu Elf Long",
+    seats: 19,
+    type: "Microbus",
+    image: "/assets/armada-garasi.webp",
+    desc: "Microbus besar dengan kapasitas 19 kursi. Nyaman untuk rombongan keluarga, wisata, atau kunjungan perusahaan.",
+  },
+  {
+    id: "hiace",
+    name: "Toyota Hiace",
+    seats: 15,
+    type: "Microbus",
+    image: "/assets/hiace.webp",
+    desc: "Microbus premium 15 kursi dengan kabin lega dan AC dingin. Pilihan unggulan untuk perjalanan wisata.",
+  },
+] as const;
+
+// Rute rental dengan pengemudi (harga sudah termasuk pengemudi, bensin tidak termasuk)
+export const RENTAL_ROUTES = [
+  {
+    id: "sby-malang",
+    from: "Surabaya",
+    to: "Malang Kota / Batu",
+    price: 1700000,
+    duration: "1 hari (± 2–3 jam perjalanan)",
+    desc: "Cocok untuk wisata Batu, Malang Kota, atau area sekitarnya. Bisa PP dalam sehari.",
+  },
+  {
+    id: "sby-pantai-selatan",
+    from: "Surabaya",
+    to: "Malang Pantai Selatan",
+    price: 1900000,
+    duration: "1 hari (± 3–4 jam perjalanan)",
+    desc: "Menuju Balekambang, Sendang Biru, atau pantai selatan Malang lainnya.",
+  },
+  {
+    id: "sby-solo",
+    from: "Surabaya",
+    to: "Solo",
+    price: 2800000,
+    duration: "2 hari 1 malam (± 5 jam perjalanan)",
+    desc: "Perjalanan jauh via Nganjuk–Madiun. Disarankan menginap semalam.",
+  },
+  {
+    id: "sby-jogja",
+    from: "Surabaya",
+    to: "Jogja",
+    price: 3500000,
+    duration: "2 hari 1 malam (± 6–7 jam perjalanan)",
+    desc: "Rute wisata populer via Solo–Klaten. Disarankan menginap semalam.",
   },
 ] as const;
 
 export const NAV_LINKS = [
-  { href: "/sewa-mobil", label: "Sewa Mobil (lepas kunci)" },
-  { href: "/dengan-pengemudi", label: "Rental Mobil dengan Pengemudi" },
+  { href: "/dengan-pengemudi", label: "Rental Dengan Pengemudi" },
   { href: "/travel", label: "Travel / Shuttle" },
   { href: "/armada", label: "Armada" },
 ] as const;
 
+// Rute populer Travel/Shuttle
 export const POPULAR_ROUTES = [
-  { slug: "jakarta-bandung", from: "Jakarta", to: "Bandung", duration: "± 3 jam", price: 150000, times: ["06:00", "11:00", "17:00"] },
-  { slug: "jakarta-bandara-soekarno-hatta", from: "Jakarta", to: "Bandara Soekarno-Hatta", duration: "± 1 jam 15 mnt", price: 120000, times: ["06:00", "11:00", "17:00"] },
-  { slug: "bandung-jakarta", from: "Bandung", to: "Jakarta", duration: "± 3 jam", price: 150000, times: ["06:00", "11:00", "17:00"] },
-  { slug: "jakarta-cirebon", from: "Jakarta", to: "Cirebon", duration: "± 4 jam", price: 190000, times: ["06:00", "11:00", "17:00"] },
+  { slug: "surabaya-malang", from: "Surabaya", to: "Malang Kota / Batu", duration: "± 2–3 jam", price: 0, times: ["06:00", "09:00", "13:00", "17:00"] },
+  { slug: "surabaya-pantai-selatan", from: "Surabaya", to: "Malang Pantai Selatan", duration: "± 3–4 jam", price: 0, times: ["06:00", "10:00"] },
+  { slug: "surabaya-jogja", from: "Surabaya", to: "Jogja", duration: "± 6–7 jam", price: 0, times: ["06:00", "20:00"] },
+  { slug: "mojokerto-solo", from: "Mojokerto", to: "Solo", duration: "± 4 jam", price: 0, times: ["07:00", "13:00"] },
 ];
 
 export const FEATURED_FLEET = [
-  { slug: "toyota-hiace-commuter", name: "Toyota Hiace Commuter", type: "Microbus", seats: 14, trans: "Manual", price: 1800000, image: "/assets/hiace.webp" },
-  { slug: "isuzu-elf-tosca", name: "Isuzu Elf Executive (Tosca)", type: "Microbus", seats: 19, trans: "Manual", price: 1500000, image: "/assets/armada-garasi.webp" },
-  { slug: "toyota-innova-reborn", name: "Toyota Innova Reborn", type: "MPV", seats: 7, trans: "Matic", price: 650000, image: null },
-  { slug: "toyota-avanza", name: "Toyota Avanza", type: "MPV", seats: 7, trans: "Manual", price: 350000, image: null },
+  { slug: "isuzu-elf-long", name: "Isuzu Elf Long", type: "Microbus", seats: 19, trans: "Manual", price: 1700000, image: "/assets/armada-garasi.webp" },
+  { slug: "toyota-hiace", name: "Toyota Hiace", type: "Microbus", seats: 15, trans: "Manual", price: 1700000, image: "/assets/hiace.webp" },
 ];
 
 export const FAQS = [
-  { q: "Apa bedanya sewa lepas kunci dan dengan pengemudi?", a: "Lepas kunci: Anda mengemudi sendiri dan perlu mengunggah KTP serta SIM. Dengan pengemudi: tarif sudah termasuk pengemudi kami, cocok untuk perjalanan jauh atau rombongan." },
-  { q: "Bagaimana cara membayar?", a: "Transfer bank/e-wallet, lalu unggah bukti transfer. Admin memverifikasi dan pesanan Anda berstatus dikonfirmasi." },
-  { q: "Berapa lama kursi shuttle ditahan?", a: "Kursi ditahan sesuai batas waktu pembayaran. Jika belum dibayar, kursi dilepas otomatis." },
-  { q: "Apakah bisa dibatalkan?", a: "Bisa, sesuai syarat pembatalan yang tertera di halaman layanan dan detail pesanan." },
+  { q: "Apa saja kendaraan yang tersedia?", a: "Kami menyediakan Isuzu Elf Long (19 kursi) dan Toyota Hiace (15 kursi) dengan pengemudi berpengalaman." },
+  { q: "Apakah harga sudah termasuk pengemudi?", a: "Ya, harga rental sudah termasuk pengemudi. Bahan bakar tidak termasuk dan ditanggung oleh penyewa." },
+  { q: "Bagaimana cara memesan?", a: "Hubungi kami via WhatsApp di 0897-8263-311 untuk konfirmasi ketersediaan dan pemesanan. Transfer DP setelah jadwal dikonfirmasi admin." },
+  { q: "Apakah ada rute selain yang tertera?", a: "Bisa! Untuk tujuan atau rute custom, klik tombol 'Tambah Tujuan' atau hubungi admin via WhatsApp untuk penawaran khusus." },
+  { q: "Berapa kursi shuttle yang tersedia?", a: "Tergantung rute dan jadwal. Hubungi admin atau lihat ketersediaan di halaman Travel/Shuttle kami." },
+  { q: "Apakah bisa dibatalkan?", a: "Bisa, sesuai syarat pembatalan yang disepakati saat pemesanan. Hubungi admin segera jika perlu pembatalan." },
 ];
 
 export const TESTIMONIALS = [
-  { name: "Rina, Jakarta", text: "Pesan microbus untuk acara keluarga mudah banget, pengemudinya ramah dan tepat waktu." },
-  { name: "Dedi, Bandung", text: "Shuttle Bandung–Jakarta rapi, jadwal jelas, kursinya nyaman." },
-  { name: "Maya, Bekasi", text: "Harga transparan, tidak ada biaya kejutan. Sudah dua kali sewa di Ibra Jaya." },
+  { name: "Pak Hendra, Surabaya", text: "Pesan Elf Long ke Jogja buat wisata keluarga 15 orang. Pengemudinya sabar, tepat waktu, dan armada bersih. Recommended!" },
+  { name: "Bu Sari, Sidoarjo", text: "Travel Surabaya–Malang nyaman dan harga jelas. Tidak ada biaya kejutan, sudah 3 kali pakai Ibra Jaya Trans." },
+  { name: "Komunitas Wisata Surabaya", text: "Elf Long 19 kursi ke Batu sangat memuaskan. Pengemudi hafal rute dan sangat membantu selama perjalanan." },
 ];
+

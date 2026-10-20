@@ -15,8 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const SERVICE_LABEL: Record<string, string> = {
-  lepas_kunci: "Sewa Lepas Kunci",
-  dengan_pengemudi: "Dengan Pengemudi",
+  dengan_pengemudi: "Rental Dengan Pengemudi",
   shuttle: "Travel / Shuttle",
 };
 
@@ -29,9 +28,7 @@ export default async function PesananDetailPage({ params }: Props) {
   if (!booking) notFound();
 
   const item = booking.booking_items[0];
-  const isLepasKunci = booking.service_type === "lepas_kunci";
   const needsPayment = booking.status === "menunggu_pembayaran";
-  const needsDocs = isLepasKunci && ["menunggu_pembayaran", "menunggu_verifikasi"].includes(booking.status);
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
@@ -74,15 +71,7 @@ export default async function PesananDetailPage({ params }: Props) {
           {booking.notes && <p className="text-xs text-muted">Catatan: {booking.notes}</p>}
         </div>
 
-        {/* Upload dokumen (KTP & SIM) */}
-        {needsDocs && (
-          <div className="rounded-[16px] bg-white p-5 shadow-soft space-y-3">
-            <h2 className="font-heading text-base font-bold">Dokumen Identitas</h2>
-            <p className="text-xs text-muted">Diperlukan untuk sewa lepas kunci. Upload KTP dan SIM asli Anda.</p>
-            <DocumentUpload bookingId={booking.id} docType="ktp" />
-            <DocumentUpload bookingId={booking.id} docType="sim" />
-          </div>
-        )}
+
 
         {/* Upload bukti bayar */}
         {needsPayment && (

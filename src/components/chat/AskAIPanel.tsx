@@ -125,12 +125,12 @@ export function AskAIPanel() {
                 <Bot size={28} />
               </div>
               <p className="font-heading text-sm font-bold text-brand-dark">Halo! Ada yang bisa dibantu? 👋</p>
-              <p className="text-xs text-muted">Tanya soal sewa mobil, pengemudi, atau shuttle</p>
+              <p className="text-xs text-muted">Tanya soal rental pengemudi, harga rute, atau travel shuttle</p>
               <div className="mt-2 flex flex-wrap justify-center gap-2">
                 {[
-                  "Mobil apa untuk 6 orang ke Bromo?",
-                  "Bedanya lepas kunci dan pengemudi?",
-                  "Jadwal shuttle Jakarta-Bandung?",
+                  "Berapa harga Elf Long ke Jogja?",
+                  "Ada Hiace untuk 15 orang ke Malang?",
+                  "Jadwal shuttle Surabaya-Malang?",
                 ].map((q) => (
                   <button
                     key={q}
